@@ -55,7 +55,7 @@ exports.getRecommand = async (req, res, next) => {
   //   subprocess.stderr.on("close", data => {
   //     console.log("Closed");
   //   });
-  handlePost("../python/model.py");
+  handlePost("./python/model.py");
   return res.send("huhu");
 };
 
