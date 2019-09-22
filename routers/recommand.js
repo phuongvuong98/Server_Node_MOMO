@@ -9,4 +9,6 @@ const cryptController = require("../controllers/recommand");
 
 router.post("/", cryptController.postRecommand);
 
+router.get("/", cryptController.getRecommand);
+
 module.exports = router;

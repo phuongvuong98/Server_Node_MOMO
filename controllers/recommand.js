@@ -50,3 +50,7 @@ exports.postRecommand = async (req, res, next) => {
   //   });
   console.log(req.body);
 };
+
+exports.getRecommand = async (req, res, next) => {
+  return res.send("It's OK");
+};
