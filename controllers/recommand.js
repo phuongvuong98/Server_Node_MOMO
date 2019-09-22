@@ -33,14 +33,21 @@ function runScript(pythonFile, userId) {
 //     return data.toString();
 //   });
 // };
-exports.postRecommand = async (req, res, next) => {
-  const subprocess = runScript("../python/model.py", "8159657106479438377");
+exports.getRecommand = async (req, res, next) => {
+  let subprocess = runScript("../python/pre_install.py", "pandas scipy");
   console.log(req.body);
   // print output of script
   subprocess.stdout.on("data", async data => {
     console.log("data", data.toString());
     // return res.send(data.toString());
-    return res.send(data.toString());
+    let subprocess = runScript("../python/model.py", "8159657106479438377");
+    console.log(req.body);
+    // print output of script
+    subprocess.stdout.on("data", async data => {
+      console.log("data", data.toString());
+      // return res.send(data.toString());
+      return res.send(data.toString());
+    });
   });
   subprocess.stderr.on("data", data => {
     console.log("error:", data.toString());
@@ -50,7 +57,7 @@ exports.postRecommand = async (req, res, next) => {
   });
 };
 
-exports.getRecommand = async (req, res, next) => {
+exports.postRecommand = async (req, res, next) => {
   //   const subprocess = runScript("../python/model.py", "8159657106479438377");
   //   console.log(req.body);
   //   // print output of script
