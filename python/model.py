@@ -1,29 +1,29 @@
 import pandas as pd
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
+# from sklearn.metrics.pairwise import cosine_similarity
 from scipy import sparse
 import heapq
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
 import csv
 import sys
 
-with open('userdict.csv', mode='r') as infile:
+with open('./python/userdict.csv', mode='r') as infile:
     reader = csv.reader(infile)
     udict = dict((int(rows[1]), int(rows[2])) for rows in reader if rows[1] != 'id')
 
-with open('servicedict.csv', mode='r') as infile:
+with open('./python/servicedict.csv', mode='r') as infile:
     reader = csv.reader(infile)
     sdict = dict((int(rows[1]), int(rows[2])) for rows in reader if rows[1] != 'id')
 
-merchants = pd.read_csv('new_merchants.csv')
-Y_data = pd.read_csv('Ydata.csv').values[:,1:]
-Ybar_data = pd.read_csv('Ybar_data.csv').values[:,1:]
+merchants = pd.read_csv('./python/new_merchants.csv')
+Y_data = pd.read_csv('./python/Ydata.csv').values[:,1:]
+Ybar_data = pd.read_csv('./python/Ybar_data.csv').values[:,1:]
 
-S = pd.read_csv('similarity.csv').values[:,1:]
+S = pd.read_csv('./python/similarity.csv').values[:,1:]
 k = 2
 n_users = len(np.unique(Y_data[:, 0]))
 n_items = len(np.unique(Y_data[:, 1]))
-mu = pd.read_csv("mu.csv").values[:,1:]
+mu = pd.read_csv("./python/mu.csv").values[:,1:]
 Ybar = sparse.coo_matrix((Ybar_data[:,2], (Ybar_data[:,1],Ybar_data[:,0])),(n_items,n_users))
 Ybar = Ybar.tocsr()
 

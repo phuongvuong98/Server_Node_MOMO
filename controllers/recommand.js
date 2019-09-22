@@ -1,24 +1,52 @@
-const path = require('path');
+const path = require("path");
+const { spawn } = require("child_process");
 function handlePost(pythonRun) {
-    var PythonShell = require('python-shell');
-    
-    var options = {
-        mode: 'text'
-        //args: [pathFileEn, pathFileKeyEn, '--option=123']
-        // args: [pathFile, pathFileKey, option]
-    };
-
-
-    PythonShell.run(pythonRun, options, function (err, results) {
-        if (err) throw err;
-        // results is an array consisting of messages collected during execution
-        console.log('results: %j', results);
-    });
+  var PythonShell = require("python-shell");
+  var options = {
+    mode: "text",
+    //args: [pathFileEn, pathFileKeyEn, '--option=123']
+    args: ["5246190437244883829"]
+  };
+  PythonShell.run(pythonRun, options, function(err, results) {
+    if (err) throw err;
+    // results is an array consisting of messages collected during execution
+    console.log("results: %j", results);
+  });
 }
 
-exports.getRecommand = (req, res, next) => {
-    handlePost('python/recommand.py');
-    // res.set('Content-Type', 'text/plain');
-    return res.send("It's OK");
+function runScript(pythonFile, userId) {
+  return spawn("python3", ["-u", path.join(__dirname, pythonFile), userId]);
 }
+// exports.getRecommand = async (req, res, next) => {
+//   const subprocess = runScript("../python/model.py", "8159657106479438377");
 
+//   // print output of script
+//   subprocess.stdout.on("data", async data => {
+//     console.log("data", data.toString());
+//     return res.send(data.toString());
+//   });
+//   subprocess.stderr.on("data", data => {
+//     console.log("error:", data.toString());
+//   });
+//   subprocess.stderr.on("close", data => {
+//     console.log("Closed");
+//     return data.toString();
+//   });
+// };
+exports.postRecommand = async (req, res, next) => {
+  //   const subprocess = runScript("../python/model.py", "8159657106479438377");
+
+  //   // print output of script
+  //   subprocess.stdout.on("data", async data => {
+  //     console.log("data", data.toString());
+  //     return res.send(data.toString());
+  //   });
+  //   subprocess.stderr.on("data", data => {
+  //     console.log("error:", data.toString());
+  //   });
+  //   subprocess.stderr.on("close", data => {
+  //     console.log("Closed");
+  //     return data.toString();
+  //   });
+  console.log(req.body);
+};

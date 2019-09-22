@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 
-// create the mini app express 
+// create the mini app express
 const router = express.Router();
 
-const rootPath = require('../util/path');
+const rootPath = require("../util/path");
 
-const cryptController = require('../controllers/recommand');
+const cryptController = require("../controllers/recommand");
 
-router.get('/', cryptController.getRecommand);
+router.post("/", cryptController.postRecommand);
 
 module.exports = router;
