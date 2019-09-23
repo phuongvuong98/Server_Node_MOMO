@@ -15,7 +15,11 @@ function handlePost(pythonRun) {
 }
 
 function runScript(pythonFile, userId) {
-  return spawn("python3", ["-u", path.join(__dirname, pythonFile), userId]);
+  return spawn("/usr/local/bin/python3", [
+    "-u",
+    path.join(__dirname, pythonFile),
+    userId
+  ]);
 }
 // exports.getRecommand = async (req, res, next) => {
 //   const subprocess = runScript("../python/model.py", "8159657106479438377");
@@ -48,7 +52,7 @@ exports.getRecommand = async (req, res, next) => {
   subprocess.stderr.on("close", data => {
     console.log("Closed");
   });
-  return res.send("It's OK");
+  // handlePost("./python/model.py");
 };
 
 exports.postRecommand = async (req, res, next) => {
