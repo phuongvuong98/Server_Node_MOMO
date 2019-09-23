@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js && python3 -m pip install pandas"
   },
   "author": "Nguyen Phuong Vuong",
   "license": "ISC",
