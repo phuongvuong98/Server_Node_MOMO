@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Predictor</title>
+</head>
+<body>
+    <form action="{{url_for('main')}}" method="POST">
+        <fieldset>
+            <legend>Input values:</legend>
+            ID:
+            <input name="id" type="text" required>
+            <br>
+            <input type="submit">
+        </fieldset>
+    </form>
+    <div class="result" align="center">
+    {% if result %}
+        <br> Predicted services:
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+</body>
+</html>
